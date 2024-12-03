@@ -18,3 +18,6 @@ VALUES
     ('Carlos Oliveira', NULL, '31977776666', '2024-12-05', '2024-12-07', 303, 600.00, 'Pendente'),
     ('Ana Costa', 'ana.costa@example.com', '41966665555', '2024-12-20', '2024-12-25', 404, 2500.00, 'Cancelada'),
     ('Luiz Pereira', 'luiz.pereira@example.com', '51955554444', '2024-12-18', '2024-12-20', 505, 800.00, 'Confirmada');
+
+
+# esse é um código do terceiro dia do desafio (advent of code) sobre: criar um sistema de reservas e inserir usando query 5 novos registros usando SQL

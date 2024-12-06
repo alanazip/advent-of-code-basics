@@ -33,7 +33,10 @@ def get_pokemon():
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
-    
+
+
+#python3 -m venv venv
+#source venv/bin/activate
 #pip install flask requests
 #python app.py
 #http://127.0.0.1:8080/pokemon?name=pikachu

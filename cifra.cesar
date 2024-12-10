@@ -1,0 +1,33 @@
+def cifra_cesar(texto, chave, modo='criptografar'):
+    """
+    Realiza a criptografia ou descriptografia de uma mensagem usando a cifra de César.
+    
+    Parâmetros:
+        texto (str): O texto a ser processado.
+        chave (int): O número de posições a deslocar (chave).
+        modo (str): 'criptografar' ou 'descriptografar'.
+    
+    Retorna:
+        str: O texto processado.
+    """
+    resultado = ""
+    for char in texto:
+        if char.isalpha():  # Apenas processa letras
+            base = ord('A') if char.isupper() else ord('a')
+            shift = chave if modo == 'criptografar' else -chave
+            resultado += chr((ord(char) - base + shift) % 26 + base)
+        else:
+            resultado += char  # Mantém outros caracteres inalterados
+    return resultado
+
+# Mensagem e chave
+mensagem_original = "Criptografe esta mensagem com Cifra de César!"
+chave = 4
+
+# Criptografando
+mensagem_criptografada = cifra_cesar(mensagem_original, chave, 'criptografar')
+print("Mensagem Criptografada:", mensagem_criptografada)
+
+# Descriptografando
+mensagem_descriptografada = cifra_cesar(mensagem_criptografada, chave, 'descriptografar')
+print("Mensagem Descriptografada:", mensagem_descriptografada)

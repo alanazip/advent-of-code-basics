@@ -1,0 +1,73 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app = express();
+const PORT = 3000;
+
+// Middleware
+app.use(bodyParser.json());
+
+// Mock data
+let items = [
+    { id: 1, name: "Item 1", description: "Description for item 1" },
+    { id: 2, name: "Item 2", description: "Description for item 2" },
+];
+
+// Routes
+app.get("/", (req, res) => {
+    res.send("Welcome to the API!");
+});
+
+// Get all items
+app.get("/items", (req, res) => {
+    res.json(items);
+});
+
+// Get a specific item
+app.get("/items/:id", (req, res) => {
+    const item = items.find((i) => i.id === parseInt(req.params.id));
+    if (item) {
+        res.json(item);
+    } else {
+        res.status(404).send("Item not found");
+    }
+});
+
+// Create a new item
+app.post("/items", (req, res) => {
+    const newItem = {
+        id: items.length + 1,
+        name: req.body.name,
+        description: req.body.description,
+    };
+    items.push(newItem);
+    res.status(201).json(newItem);
+});
+
+// Update an item
+app.put("/items/:id", (req, res) => {
+    const item = items.find((i) => i.id === parseInt(req.params.id));
+    if (item) {
+        item.name = req.body.name || item.name;
+        item.description = req.body.description || item.description;
+        res.json(item);
+    } else {
+        res.status(404).send("Item not found");
+    }
+});
+
+// Delete an item
+app.delete("/items/:id", (req, res) => {
+    const itemIndex = items.findIndex((i) => i.id === parseInt(req.params.id));
+    if (itemIndex !== -1) {
+        items.splice(itemIndex, 1);
+        res.status(204).send();
+    } else {
+        res.status(404).send("Item not found");
+    }
+});
+
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
